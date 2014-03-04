@@ -89,17 +89,3 @@ def vitesse_radiale(position1,position2,vitesse1,vitesse2):
     vradiale=sum(vector*(vitesse1-vitesse2))
     return vradiale
     
-def longitude_latitude(position,position_ref):
-    vector=position-position_ref
-    distance=np.sqrt(sum(vector**2))
-    vector=vector/distance
-    omega=23*np.pi/180
-    x=vector[0]
-    y=np.cos(omega)*vector[1]-np.sin(omega)*vector[2]
-    z=np.sin(omega)*vector[1]+np.cos(omega)*vector[2]
-    vector=np.array([x,y,z])
-    theta=np.arcsin(vector[2])
-    phi=np.arctan2(vector[1],vector[0])
-    latitude=theta*180/(np.pi)
-    longitude=phi*180/(np.pi)
-    return longitude,latitude
