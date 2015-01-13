@@ -31,4 +31,8 @@ L'argument linestyle permet de changer le style d'affichage de la ligne de courb
 Vous pouvez essayer les différents paramètres: '-', '--', '-.', ':' ou 'steps'.
 
 ###Axes
+Il est possible de changer les axes du repères.
 xlim, ylim
+
+## Définir le texte des graduations
+
