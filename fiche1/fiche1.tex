@@ -1,0 +1,51 @@
+\documentclass[a4]{article}
+\usepackage[T1]{fontenc}
+\usepackage{a4wide}
+\setlength{\topmargin}{-3cm}
+\addtolength{\textheight}{3cm}
+\usepackage{color}
+
+%\usepackage[scaled]{beramono}
+
+\usepackage{listings}
+
+\lstloadlanguages{Python}
+
+\lstset{
+basicstyle=\small,
+backgroundcolor = \color{yellow},
+language=Python,
+showstringspaces=false,
+formfeed=\newpage,
+tabsize=4,
+commentstyle=\itshape,
+basicstyle=\ttfamily \footnotesize,
+morekeywords={models, lambda, forms}
+}
+
+\newcommand{\code}[2]{
+\hrulefill
+\subsection*{#1}
+\lstinputlisting{#2}
+\vspace{2em}
+}
+
+
+\newcommand{\mycode}[1]{{\small \tt #1}}
+
+
+\newenvironment{corr}{\vspace{0.5cm}\tt \hrule \hrule \begin{verbatim}}{\end{verbatim}\hrule \hrule}
+
+\begin{document} \noindent
+  \thispagestyle{empty}
+
+  \vspace{-0.8cm}
+  \noindent
+  {\huge{\bf Librarie MatPlotLib}}
+
+  \section{Introduction}
+  Matplotlib est une bibliothèque du langage de programmation python qui, combinée avec les bibliothèques python de calcul scientifique numpy et scipy, constitue un puissant outil pour tracer et visualiser des données.
+
+  \section{Tracer une fonction}
+
+\end{document}
