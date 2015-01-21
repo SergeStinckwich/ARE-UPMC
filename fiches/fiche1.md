@@ -3,8 +3,6 @@
 Matplotlib est une bibliothèque du langage de programmation Python qui, combinée avec les bibliothèques python de calcul scientifique numpy et scipy, constitue un puissant outil pour tracer et visualiser des données.
 
 
-## Utiliser Matplotlib pour afficher des mesures
-
 ## Utiliser Matplotlib pour tracer une fonction
 
 ```
@@ -69,6 +67,8 @@ On peut générer un fichier image (que l'on pourra réutiliser ensuite sur le w
 ```
 savefig("nom_image.png", dpi=72)
 ```
+
+## Utiliser Matplotlib pour afficher des mesures
 
 ## Utiliser Matplotlib pour dessiner une grille 2D
 
