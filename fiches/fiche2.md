@@ -1,7 +1,8 @@
 #Calcul scientifique en Python
 
 ## Tirage de nombre aléatoire
-La bibliothèque ``random`` permet de générer des nombres aléatoires. Voir documentation ici: https://docs.python.org/3/library/random.html
+La bibliothèque ``random`` permet de générer des nombres aléatoires.
+Voir documentation ici: https://docs.python.org/3/library/random.html
 
 Quelques unes des fonctions les plus utiles:
 
@@ -12,6 +13,6 @@ Quelques unes des fonctions les plus utiles:
 Pourquoi les nombres générés par cette bibliothèque sont des nombres pseudo-aléatoires ?
 
 ## Exercice: Estimation de pi
-Imaginons une cible représentée par un disque de rayon r (donc de surface π*r2). Cette cible est incluse dans un carré de côté 2r (donc de surface (2r)2). Pour estimer nous allons jeter au hasard des fléchettes dans ce carré. La probabilité qu’une fléchette tombe sur la cible est donc π. En jetant un grand nombre de fléchettes nous aurons donc une estimation de π!Ecrire le script Python qui permet de réaliser cette estimation.
-## Bibliothèque numpy
-Voir http://www.numpy.org/
+Imaginons une cible représentée par un disque de rayon r (donc de surface π*r^2). Cette cible est incluse dans un carré de côté 2r (donc de surface (2r)^2). Pour estimer nous allons jeter au hasard des fléchettes dans ce carré. La probabilité qu’une fléchette tombe sur la cible est donc π. En jetant un grand nombre de fléchettes nous aurons donc une estimation de π!Ecrire le script Python qui permet de réaliser cette estimation.
+## Bibliothèque NumPy
+La bibliothèse ``NumPy`` permet entre autre de manipuler des tableaux multi-dimensionnels.Voir documentation: http://www.numpy.org/En Python, il est possible d'utiliser le type list ou array pour représenter des tableaux a une ou plusieurs dimensions. NumPy propose des tableaux multi-dimensionnels de très grande taille particulièrement efficace.
