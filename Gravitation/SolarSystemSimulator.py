@@ -84,7 +84,7 @@ fig=plt.figure(figsize=(14,7),tight_layout=True)
 
 ax_orbits=fig.add_subplot(121,projection="3d")
 
-for p in range(1,nplots): 
+for p in range(1,nplots):
     iplot=min(int(periods[p]/dt)+1,len(time))
     color=object_colors[list_objects[p]]
     ax_orbits.plot(orbits[0:iplot,p,0]/AU,
@@ -98,14 +98,14 @@ obj_orbits=ax_orbits.plot([positions[0,0]/AU],
                           [positions[0,1]/AU],
                           [positions[0,2]/AU],
                           color+symbol)
-for p in range(1,nplots): 
+for p in range(1,nplots):
     color=object_colors[list_objects[p]]
     symbol=object_symbols[list_objects[p]]
     obj_orbits+=ax_orbits.plot([positions[p,0]/AU],
                                [positions[p,1]/AU],
                                [positions[p,2]/AU],
                                color+symbol)
-                          
+
 ax_orbits.axis('equal')
 ax_orbits.set_zlim(ax_orbits.get_xlim())
 
@@ -142,7 +142,7 @@ color=object_colors["Sun"]
 symbol=object_symbols["Sun"]
 asc,decl=ascension_declinaison(positions[0,:],positions[3,:])
 obj_sky=ax_sky.plot(asc,decl,color+symbol)
-for p in range(1,num_particles): 
+for p in range(1,num_particles):
     if not list_objects[p]=="Earth":
         color=object_colors[list_objects[p]]
         symbol=object_symbols[list_objects[p]]
@@ -153,26 +153,26 @@ fig.canvas.draw()
 
 def init():
     return
-    
+
 def step():
     global positions
     global velocities
-    
+
     positions,velocities,pe,ke,te=propagate(positions,velocities,masses,dt)
     return
-    
+
 Running=False
 def toggle_state():
     global Running
     Running=not Running
-    
+
 def update(*args):
     if not Running:
         return obj_orbits+obj_sky
 
-    step()    
+    step()
 
-    for p in range(0,nplots):   
+    for p in range(0,nplots):
         obj_orbits[p].set_xdata(positions[p,0]/AU)
         obj_orbits[p].set_ydata(positions[p,1]/AU)
         obj_orbits[p].set_3d_properties(positions[p,2]/AU)
@@ -181,13 +181,13 @@ def update(*args):
     obj_sky[0].set_xdata(asc)
     obj_sky[0].set_ydata(decl)
     i=1
-    for p in range(1,num_particles): 
+    for p in range(1,num_particles):
         if not list_objects[p]=="Earth":
             asc,decl=ascension_declinaison(positions[p,:],positions[3,:])
             obj_sky[i].set_xdata(asc)
             obj_sky[i].set_ydata(decl)
             i+=1
-    
+
     return obj_orbits+obj_sky
 
 init()
@@ -197,5 +197,5 @@ ani=animation.FuncAnimation(fig,update,interval=25)
 def onkey(event):
     if (event.key==" "):
         toggle_state()
-                                
+
 cid = fig.canvas.mpl_connect('key_press_event',onkey)
