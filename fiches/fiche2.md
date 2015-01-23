@@ -1,5 +1,8 @@
 #Faire une simulation en Python
 
+_Ce document est librement inspiré [tutoriel NumPy de Nicolas Rougier](http://www.labri.fr/perso/nrougier/teaching/numpy/numpy.html) et est disponible sous licence Creative Commons Attribution 3.0 United States License (CC-by) http://creativecommons.org/licenses/by/3.0/us_
+
+
 Le principe de toute ``simulation informatique`` d'un phénonème physique ou écologique consiste à représenter l'état initial de la simulation, puis ensuite de construire une fonction qui à partir d'un état précédent va déterminer l'état suivant de la simulation. L'application de cette fonction permet de passer du temps t0 au temps t1, puis t2, etc ... Généralement, on arrrête la simulation au bout d'un certain nombre d'application de la fonction (n) détermniné à l'avance.
 
 Chaque étape peut correspondre en fonction du phénomène considérée à une durée de 1 ms, 1s, 1 jour ou bien 1000 ans.
@@ -9,15 +12,20 @@ Nous allons illustrer ici ce principe au moyen d'une simulation sous la forme d'
 Le Jeu de la Vie est un des premiers exemples d'automates cellulaires (voir figure ci-dessous) construit par John Conway en 1970. Ces automates cellulaires peuvent être considérés comme un tableau de cellules qui sont connectées les unes aux autres par la notion de voisinage.
 
 Ce "jeu" est un fait un jeu à zéro joueur, car son évolution est déterminé uniquement par son état inital et ne nécessite pas d'entrées de joueurs humains. La seule façon d'interagir avec un Jeu de la Vie est de créer une configuration initiale et d'observer comment elle évolue au cours du temps.
-L'univers (ou l'état) du Jeu de la Live est une grille à deux dimensions de taille infini, composé de cellules carrées. Chaque cellule peut contenir l'un des deux états possibles: vivant ou mort, que l'on représente par les valeurs entières 0 ou 1.
-Every cell interacts with its eight neighbours, which are the cells that are directly horizontally, vertically, or diagonally adjacent. At each step in time, the following transitions occur:
 
-1. Any live cell with fewer than two live neighbours dies, as if by needs caused by underpopulation.
-2. Any live cell with more than three live neighbours dies, as if by overcrowding.
-3. Any live cell with two or three live neighbours lives, unchanged, to the next generation.
-4. Any dead cell with exactly three live neighbours becomes a live cell.The initial pattern constitutes the 'seed' of the system. The first generation is created by applying the above rules simultaneously to every cell in the seed – births and deaths happen simultaneously, and the discrete moment at which this happens is sometimes called a tick. (In other words, each generation is a pure function of the one before.) The rules continue to be applied repeatedly to create further generations.
+L'univers (ou l'état) du Jeu de la Live est une grille à deux dimensions de taille infinie, composé de cellules carrées. Chaque cellule peut contenir l'un des deux états possibles: vivant ou mort, que l'on représente par les valeurs entières 0 ou 1.
 
-We'll first use a very simple setup and more precisely, we'll use the glider pattern that is known to move one step diagonally in 4 iterations as illustrated below:
+![image](http://www.labri.fr/perso/nrougier/teaching/numpy/figures/game-of-life.png)
+Chaque cellule interagit avec ces 8 voisins, qui sont les cellules directement adjacentes horizontalement, verticalement et en diagonale. A chaque étape du temps, les règles suivantes vont s'appliquer : 
+
+1. Une cellule vivante avec moins de deux voisines vivantes, meurt d'isolement,
+2. Une cellule vivante avec plus de 3 cellules voisines vivantes, meurt d'étouffement,
+3. Une cellule vivante avec 2 ou 3 cellules voisines vivantes, reste inchangé à la prochaine génération,
+4. Une cellule morte avec exactement 3 cellules vivantes, devient une cellule vivante.L'état de départ est constitué par une forme initiale. La première génération est créér en appliquant les règles ci-dessus simultanément à toutes les cellules de l'état de départ: naissances et morts sont effectués simultanément, and le moment où cela se déroule est appellé tick (de simulation). Les règles continuent d'être appliquées pour créer les futures générations.
+
+Pour commencer, nous allons utiliser un état de départ très simple, appellé "planeur" (glider) qui est connu pour se déplacer diagonalement au bout de 4 itérations comme indiqué ci-dessous : 
+
+![image](http://www.labri.fr/perso/nrougier/teaching/numpy/figures/glider-00.png)
 
 Cette propriété va nous permettre de débogguer plus facilement nos programmes.
 
@@ -89,7 +97,7 @@ Dans l'exemple ci-dessous, nous avons extrait une sous-partie de ``cells`` de la
 
 Nous avons modifié la valeur de ``a[0,0]`` à 9 et nous voyons un changement immédiat dans ``cells[1,1]`` parce que ``a[0,0]`` correspond à ``cells[1,1]``. Ceci peut paraître trivial avec des tableaux si simples, mais les choses peuvent devenir plus complexe comme nous le verrons plus tard. En cas de doute, il possible de vérifier rapidement, si un tableau est une partie d'un autre :
 
-```print
+```python
 >>> print(cells.base is None)
 True
 >>> print(a.base is cells)
@@ -101,7 +109,7 @@ Nous avons besoin d'une fonction pour compter les voisins d'une cellule. Nous po
 
 Avec NumPy, il est possible de manipuler ``cells`` comme un scalaire normal sans manipuler chacun des éléments du tableau :
 
-```print
+```python
 >>> print (1+(2*cells+3))
 [[4 4 4 4 4 4]
  [4 4 4 6 4 4]
@@ -115,7 +123,7 @@ If you look carefully at the output, you may realize that the ouptut corresponds
 
 Ok, so far, so good. Now what happens if we add z with one of its subpart, let's say z[-1:1,-1:1] ?
 
-```
+```python
 >>> z + z[-1:1,-1:1]
 Traceback (most recent call last):
 File "<stdin>", line 1, in <module>
@@ -125,7 +133,7 @@ ValueError: operands could not be broadcast together with shapes (6,6) (4,4)
 
 This raises a Value Error, but more interestingly, numpy complains about the impossibility of broadcasting the two arrays together. Broadcasting is a very powerful feature of numpy and most of the time, it saves you a lot of hassle. Let's consider for example the following code:
 
-```
+```python
 >>> print(z+1)
 [[1 1 1 1 1 1]
  [1 1 1 2 1 1]
@@ -137,7 +145,7 @@ This raises a Value Error, but more interestingly, numpy complains about the imp
 
 ###Faire des itérations
 
-```
+```python
 def iterate(cells):
     # Iterate the game of life : naive version
     # Count neighbours
@@ -165,9 +173,8 @@ def iterate(cells):
 ```
 
 
-Pourquoi on fait en sorte à la fin de la fonction de mettre les bords de l'automate à zéro ?
-
-
+1. Que fait la fonction ``np.zeros()`` ?
+2. Pourquoi on fait en sorte à la fin de la fonction de mettre les bords de l'automate à zéro ?
 
 
 ## Tirage de nombre aléatoire
