@@ -44,7 +44,7 @@ La première question à se poser pour faire cette simulation est comment repré
 La bibliothèque scientifique ``NumPy`` est une alternative qui permet de manipuler très efficacemment des tableaux de grande taille en Python: http://www.numpy.org/
 La première chose à faire est de créer un tableau NumPy afin de contenir les cellules (``cells``). Ceci peut être fait facilement de la façon suivante :
 
-```python
+```
 >>> import numpy as np
 >>> cells = np.array([[0,0,0,0,0,0],
               [0,0,0,1,0,0],
@@ -58,26 +58,26 @@ Il existe de nombreuses autres façons de créer un tableau NumPy : http://docs.
 
 Notez que nous n'avons pas spécifié le type des données contenues dans le tableau, NumPy a choisi pour nous. Comme tous les éléments sont des entiers, NumPy a choisi le type entier (integer). Ceci peut se vérifier facilement :
 
-```python
+```
 >>> print(cells.dtype)
 int64```
 
 On peut facilement vérifier la taille d'un tableau, ici par exemple 6x6 :
 
-```python
+```
 >>> print(cells.shape)
 (6, 6)
 ```
 Chaque élément de ``cells`` peut être accédé en utilisant un index de ligne et de colonne (en suivant cet ordre) :
 
-```python
+```
 >>> print cells[0,5]
 0
 ```
 
 Il est également possible d'accéder à une sous-partie d'un tableau, en utilsant la notation dite slice :
 
-```python
+```
 >>> print cells[1:5,1:5]
 [[0 0 1 0]
  [1 0 1 0]
@@ -87,7 +87,7 @@ Il est également possible d'accéder à une sous-partie d'un tableau, en utilsa
 
 Dans l'exemple ci-dessous, nous avons extrait une sous-partie de ``cells`` de la ligne 1 à 5 et de la collonne 1 à 5. Il est important de bien comprendre qu'il s'agit vraiment d'une sous-ensemble de ``cells`` dans le sens où chaque modification de la sous-partie va avoir un impact direct sur ``cells`` :
 
-```python
+```
 >>> a = cells[1:5,1:5]
 >>> a[0,0] = 9
 >>> print(a)
@@ -107,11 +107,17 @@ Dans l'exemple ci-dessous, nous avons extrait une sous-partie de ``cells`` de la
 
 Nous avons modifié la valeur de ``a[0,0]`` à 9 et nous voyons un changement immédiat dans ``cells[1,1]`` parce que ``a[0,0]`` correspond à ``cells[1,1]``. Ceci peut paraître trivial avec des tableaux si simples, mais les choses peuvent devenir plus complexe comme nous le verrons plus tard. En cas de doute, il possible de vérifier rapidement, si un tableau est une partie d'un autre :
 
-```python
+```
 >>> print(cells.base)
 None
 >>> print(a.base is cells)
 True
+```
+
+N'oublions pas de remettre la valeur de a[0,0] à 0 :
+
+```
+>>> a[0,0] = 0
 ```
 
 ### Compter les voisins
@@ -119,7 +125,7 @@ Nous avons besoin d'une fonction pour compter les voisins d'une cellule. Nous po
 
 Avec NumPy, il est possible de manipuler ``cells`` comme un scalaire normal sans manipuler chacun des éléments du tableau :
 
-```python
+```
 >>> print (1+(2*cells+3))
 [[4 4 4 4 4 4]
  [4 4 4 6 4 4]
@@ -131,63 +137,62 @@ Avec NumPy, il est possible de manipuler ``cells`` comme un scalaire normal sans
 
 Si vous regardez attentivement la sortie, vous réaliserez qu'elle correspond à l'application de la forme sur chacun des éléments du tableau pris séparemment.
 
-Que se passe-t-il si on ajoute ``cells`` avec une sous-partie d'elle-même comme par exemple : ``cells[-1:1,-1:1]`` ?
+Construisons un tableau ``neighbours`` de même taille que le tableau ``cells`` contenant à la position [i,j] le nombre de voisins vivants de la case [i,j] dans ``cells`` :
 
-```python
->>> cells + cells[1:5,1:5]
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
 
-ValueError: operands could not be broadcast together with shapes (6,6) (4,4)
+```
+>>> neighbours = np.zeros(cells.shape, dtype=int)
+>>> neighbours[1:-1,1:-1] += (cells[ :-2, :-2] + cells[ :-2,1:-1] + cells[ :-2,2:] +
+                              cells[1:-1, :-2]                    + cells[1:-1,2:] +
+                              cells[2:  , :-2] + cells[2:  ,1:-1] + cells[2:  ,2:])
+>>> neighbours
+array([[0, 0, 0, 0, 0, 0],
+       [0, 1, 3, 1, 2, 0],
+       [0, 1, 5, 3, 3, 0],
+       [0, 2, 3, 2, 2, 0],
+       [0, 1, 2, 2, 1, 0],
+       [0, 0, 0, 0, 0, 0]])
 ```
 
-This raises a Value Error, but more interestingly, numpy complains about the impossibility of broadcasting the two arrays together. Broadcasting is a very powerful feature of numpy and most of the time, it saves you a lot of hassle. Let's consider for example the following code:
-
-```python
->>> print(z+1)
-[[1 1 1 1 1 1]
- [1 1 1 2 1 1]
- [1 2 1 2 1 1]
- [1 1 2 2 1 1]
- [1 1 1 1 1 1]
- [1 1 1 1 1 1]]
-```
-
+**Question: Que fait la fonction ``np.zeros()`` ?**
+                     
 ###Faire des itérations
 
-```python
-def iterate(cells):
-    # Iterate the game of life : naive version
-    # Count neighbours
-    N = np.zeros(cells.shape, int)
-    N[1:-1,1:-1] += (cells[0:-2,0:-2] + cells[0:-2,1:-1] + cells[0:-2,2:] +
-                     cells[1:-1,0:-2]                + cells[1:-1,2:] +
-                     cells[2:  ,0:-2] + cells[2:  ,1:-1] + cells[2:  ,2:])
-    N_ = N.ravel()
-    Z_ = cells.ravel()
+Construisons la fonction ``iterate`` qui permet d'application les règles sur ``cells`` pour produire une nouvell génération :
 
-    # Apply rules
-    R1 = np.argwhere( (Z_==1) & (N_ < 2) )
-    R2 = np.argwhere( (Z_==1) & (N_ > 3) )
-    R3 = np.argwhere( (Z_==1) & ((N_==2) | (N_==3)) )
-    R4 = np.argwhere( (Z_==0) & (N_==3) )
+```
+>>> def iterate(cells):
+    	# Iterate the game of life
+    	# Count neighbours
+    	neighbours = np.zeros(cells.shape, int)
+    	n[1:-1,1:-1] += (cells[0:-2,0:-2] + cells[0:-2,1:-1] + cells[0:-2,2:] +
+                         cells[1:-1,0:-2]                    + cells[1:-1,2:] +
+                         cells[2:  ,0:-2] + cells[2:  ,1:-1] + cells[2:  ,2:])
+    	N_ = N.ravel()
+    	Z_ = cells.ravel()
+    	# Apply rules
+    	R1 = np.argwhere( (Z_==1) & (N_ < 2) )
+    	R2 = np.argwhere( (Z_==1) & (N_ > 3) )
+    	R3 = np.argwhere( (Z_==1) & ((N_==2) | (N_==3)) )
+    	R4 = np.argwhere( (Z_==0) & (N_==3) )
+    	
+    	# Set new values
+    	Z_[R1] = 0
+    	Z_[R2] = 0
+    	Z_[R3] = Z_[R3]
+    	Z_[R4] = 1
 
-    # Set new values
-    Z_[R1] = 0
-    Z_[R2] = 0
-    Z_[R3] = Z_[R3]
-    Z_[R4] = 1
-
-    # Make sure borders stay null
-    cells[0,:] = cells[-1,:] = cells[:,0] = cells[:,-1] = 0
+    	# Make sure borders stay null
+    	cells[0,:] = cells[-1,:] = cells[:,0] = cells[:,-1] = 0
 ```
 
 
-1. Que fait la fonction ``np.zeros()`` ?
-2. Pourquoi on fait en sorte à la fin de la fonction de mettre les bords de l'automate à zéro ?
+**Question: pourquoi on fait en sorte à la fin de la fonction de mettre les bords de l'automate à zéro ?**
 
+## Lancer une simulation
+Essayons de lancer le Jeu de la Vie sur une grille beaucoup plus grande.
+Pour cela générons une grille rempli de 0 et 1 placée de manière aléatoire.
 
-## Tirage de nombre aléatoire
 La bibliothèque ``random`` permet de générer des nombres aléatoires.
 Voir documentation ici: https://docs.python.org/3/library/random.html
 
@@ -197,7 +202,32 @@ Quelques unes des fonctions les plus utiles:
 * ``random.random()`` : retourne un nombre réél aléatoire dans l'intervalle [0, 1]
 * ``random.randrange(a,b)``: retourne un nombre entier compris entre a et b (inclus).
 
-Pourquoi les nombres générés par cette bibliothèque sont des nombres pseudo-aléatoires ?
+**Question: Pourquoi les nombres générés par cette bibliothèque sont des nombres pseudo-aléatoires ?**
+
+La bibliothèque NumPy complète la bibliothèque ``random`` par des fonctions comme la fonction ```np.random.randint`` (voir documentation ici : http://docs.scipy.org/doc/numpy/reference/routines.random.html) :
+
+```
+>>> cells = np.random.randint(0, 2, (256,512))
+```
+
+Effectuons 100 itérations :
+
+```
+>>> for i in range(100): iterate(cells)
+```
+
+et affichons les résultats : 
+
+```
+>>> size = np.array(cells.shape)
+>>> dpi = 72.0
+>>> figsize= size[1]/float(dpi),size[0]/float(dpi)
+>>> fig = plt.figure(figsize=figsize, dpi=dpi, facecolor="white")
+>>> fig.add_axes([0.0, 0.0, 1.0, 1.0], frameon=False)
+>>> plt.imshow(cells,interpolation='nearest', cmap=plt.cm.gray_r)
+>>> plt.xticks([]), plt.yticks([])
+>>> plt.show()
+```
 
 ## Exercice: Estimation de pi
 Imaginons une cible représentée par un disque de rayon r (donc de surface π*r^2). Cette cible est incluse dans un carré de côté 2r (donc de surface (2r)^2). Pour estimer nous allons jeter au hasard des fléchettes dans ce carré. La probabilité qu’une fléchette tombe sur la cible est donc π. En jetant un grand nombre de fléchettes nous aurons donc une estimation de π!Ecrire le script Python qui permet de réaliser cette estimation.
