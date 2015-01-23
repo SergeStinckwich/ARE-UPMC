@@ -26,12 +26,17 @@ L'univers (ou l'état) du Jeu de la Live est une grille à deux dimensions de ta
 Pour commencer, nous allons utiliser un état de départ très simple, appellé "planeur" (glider) qui est connu pour se déplacer diagonalement au bout de 4 itérations comme indiqué ci-dessous : 
 
 ![image](http://www.labri.fr/perso/nrougier/teaching/numpy/figures/glider-00.png)
+![image](http://www.labri.fr/perso/nrougier/teaching/numpy/figures/glider-01.png)
+![image](http://www.labri.fr/perso/nrougier/teaching/numpy/figures/glider-02.png)
+![image](http://www.labri.fr/perso/nrougier/teaching/numpy/figures/glider-03.png)
+![image](http://www.labri.fr/perso/nrougier/teaching/numpy/figures/glider-04.png)
+![image](http://www.labri.fr/perso/nrougier/teaching/numpy/figures/glider-05.png)
 
-Cette propriété va nous permettre de débogguer plus facilement nos programmes.
+Cette propriété va nous permettre de débogguer visuellement plus facilement nos programmes.
 
 La première question à se poser pour faire cette simulation est comment représenter un état, ici l'ensemble des cellules à un instant donné. En Python, il est possible d'utiliser le type list ou array pour représenter des tableaux a une ou plusieurs dimensions.
 
-La bibliothèse scientifique ``NumPy`` est une alternative qui permet de manipuler très efficacemment des tableaux de grande taille en Python: http://www.numpy.org/
+La bibliothèque scientifique ``NumPy`` est une alternative qui permet de manipuler très efficacemment des tableaux de grande taille en Python: http://www.numpy.org/
 La première chose à faire est de créer un tableau NumPy afin de contenir les cellules (``cells``). Ceci peut être fait facilement de la façon suivante :
 
 ```python
