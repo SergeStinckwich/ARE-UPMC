@@ -44,7 +44,7 @@ La première question à se poser pour faire cette simulation est comment repré
 La bibliothèque scientifique ``NumPy`` est une alternative qui permet de manipuler très efficacemment des tableaux de grande taille en Python: http://www.numpy.org/
 La première chose à faire est de créer un tableau NumPy afin de contenir les cellules (``cells``). Ceci peut être fait facilement de la façon suivante :
 
-```
+```python
 >>> import numpy as np
 >>> cells = np.array([[0,0,0,0,0,0],
               [0,0,0,1,0,0],
@@ -58,26 +58,26 @@ Il existe de nombreuses autres façons de créer un tableau NumPy : http://docs.
 
 Notez que nous n'avons pas spécifié le type des données contenues dans le tableau, NumPy a choisi pour nous. Comme tous les éléments sont des entiers, NumPy a choisi le type entier (integer). Ceci peut se vérifier facilement :
 
-```
+```python
 >>> print(cells.dtype)
 int64```
 
 On peut facilement vérifier la taille d'un tableau, ici par exemple 6x6 :
 
-```
+```python
 >>> print(cells.shape)
 (6, 6)
 ```
 Chaque élément de ``cells`` peut être accédé en utilisant un index de ligne et de colonne (en suivant cet ordre) :
 
-```
+```python
 >>> print cells[0,5]
 0
 ```
 
 Il est également possible d'accéder à une sous-partie d'un tableau, en utilsant la notation dite slice :
 
-```
+```python
 >>> print cells[1:5,1:5]
 [[0 0 1 0]
  [1 0 1 0]
@@ -87,7 +87,7 @@ Il est également possible d'accéder à une sous-partie d'un tableau, en utilsa
 
 Dans l'exemple ci-dessous, nous avons extrait une sous-partie de ``cells`` de la ligne 1 à 5 et de la collonne 1 à 5. Il est important de bien comprendre qu'il s'agit vraiment d'une sous-ensemble de ``cells`` dans le sens où chaque modification de la sous-partie va avoir un impact direct sur ``cells`` :
 
-```
+```python
 >>> a = cells[1:5,1:5]
 >>> a[0,0] = 9
 >>> print(a)
@@ -107,7 +107,7 @@ Dans l'exemple ci-dessous, nous avons extrait une sous-partie de ``cells`` de la
 
 Nous avons modifié la valeur de ``a[0,0]`` à 9 et nous voyons un changement immédiat dans ``cells[1,1]`` parce que ``a[0,0]`` correspond à ``cells[1,1]``. Ceci peut paraître trivial avec des tableaux si simples, mais les choses peuvent devenir plus complexe comme nous le verrons plus tard. En cas de doute, il possible de vérifier rapidement, si un tableau est une partie d'un autre :
 
-```
+```python
 >>> print(cells.base)
 None
 >>> print(a.base is cells)
@@ -116,7 +116,7 @@ True
 
 N'oublions pas de remettre la valeur de a[0,0] à 0 :
 
-```
+```python
 >>> a[0,0] = 0
 ```
 
@@ -125,7 +125,7 @@ Nous avons besoin d'une fonction pour compter les voisins d'une cellule. Nous po
 
 Avec NumPy, il est possible de manipuler ``cells`` comme un scalaire normal sans manipuler chacun des éléments du tableau :
 
-```
+```python
 >>> print (1+(2*cells+3))
 [[4 4 4 4 4 4]
  [4 4 4 6 4 4]
@@ -140,7 +140,7 @@ Si vous regardez attentivement la sortie, vous réaliserez qu'elle correspond à
 Construisons un tableau ``neighbours`` de même taille que le tableau ``cells`` contenant à la position [i,j] le nombre de voisins vivants de la case [i,j] dans ``cells`` :
 
 
-```
+```python
 >>> neighbours = np.zeros(cells.shape, dtype=int)
 >>> neighbours[1:-1,1:-1] += (cells[ :-2, :-2] + cells[ :-2,1:-1] + cells[ :-2,2:] +
                               cells[1:-1, :-2]                    + cells[1:-1,2:] +
@@ -158,29 +158,42 @@ array([[0, 0, 0, 0, 0, 0],
                      
 ###Faire des itérations
 
-Construisons la fonction ``iterate`` qui permet d'application les règles sur ``cells`` pour produire une nouvell génération :
+Construisons la fonction ``iterate`` qui permet d'application les règles sur ``cells`` pour produire une nouvell génération.
 
+Pour cela, on va utiliser la fonction ``np.ravel()`` qui permet d'aplatir un tableau multi-dimensionnels en tableau à une dimension :
+
+```python
+>>> np.ravel(cells)
+array([0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0,
+       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
 ```
+
+Voir la documentation ici : http://docs.scipy.org/doc/numpy/reference/generated/numpy.ravel.html?highlight=ravel#numpy.ravel
+
+
+et la fonction ``np.argwhere()`` (voir documentation ici : http://docs.scipy.org/doc/numpy/reference/generated/numpy.argwhere.html) :
+
+```python
 >>> def iterate(cells):
     	# Iterate the game of life
     	# Count neighbours
-    	neighbours = np.zeros(cells.shape, int)
+    	neighbours = np.zeros(cells.shape, dtype=int)
     	n[1:-1,1:-1] += (cells[0:-2,0:-2] + cells[0:-2,1:-1] + cells[0:-2,2:] +
                          cells[1:-1,0:-2]                    + cells[1:-1,2:] +
                          cells[2:  ,0:-2] + cells[2:  ,1:-1] + cells[2:  ,2:])
-    	N_ = N.ravel()
+    	n1 = n.ravel()
     	Z_ = cells.ravel()
     	# Apply rules
-    	R1 = np.argwhere( (Z_==1) & (N_ < 2) )
-    	R2 = np.argwhere( (Z_==1) & (N_ > 3) )
-    	R3 = np.argwhere( (Z_==1) & ((N_==2) | (N_==3)) )
-    	R4 = np.argwhere( (Z_==0) & (N_==3) )
+    	rule1 = np.argwhere( (Z_==1) & (n1 < 2) )
+    	rule2 = np.argwhere( (Z_==1) & (n1 > 3) )
+    	rule3 = np.argwhere( (Z_==1) & ((n1==2) | (n1==3)) )
+    	rule4 = np.argwhere( (Z_==0) & (n1==3) )
     	
     	# Set new values
-    	Z_[R1] = 0
-    	Z_[R2] = 0
-    	Z_[R3] = Z_[R3]
-    	Z_[R4] = 1
+    	Z_[rule1] = 0
+    	Z_[rule2] = 0
+    	Z_[rule3] = Z_[rule3]
+    	Z_[rule4] = 1
 
     	# Make sure borders stay null
     	cells[0,:] = cells[-1,:] = cells[:,0] = cells[:,-1] = 0
@@ -204,21 +217,21 @@ Quelques unes des fonctions les plus utiles:
 
 **Question: Pourquoi les nombres générés par cette bibliothèque sont des nombres pseudo-aléatoires ?**
 
-La bibliothèque NumPy complète la bibliothèque ``random`` par des fonctions comme la fonction ```np.random.randint`` (voir documentation ici : http://docs.scipy.org/doc/numpy/reference/routines.random.html) :
+La bibliothèque NumPy complète la bibliothèque ``random`` par des fonctions comme la fonction ``np.random.randint`` (voir documentation ici : http://docs.scipy.org/doc/numpy/reference/routines.random.html) :
 
-```
+```python
 >>> cells = np.random.randint(0, 2, (256,512))
 ```
 
 Effectuons 100 itérations :
 
-```
+```python
 >>> for i in range(100): iterate(cells)
 ```
 
 et affichons les résultats : 
 
-```
+```python
 >>> size = np.array(cells.shape)
 >>> dpi = 72.0
 >>> figsize= size[1]/float(dpi),size[0]/float(dpi)
