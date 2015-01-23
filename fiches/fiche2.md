@@ -9,7 +9,7 @@ Chaque étape peut correspondre en fonction du phénomène considérée à une d
 
 Nous allons illustrer ici ce principe au moyen d'une simulation sous la forme d'un jeu (appellé Jeu de la Vie) représentant des cellules qui naissent ou qui meurent au cours du temps.
 ##Phénomène à simuler: le Jeu de la Vie
-Le Jeu de la Vie est un des premiers exemples d'automates cellulaires (voir figure ci-dessous) construit par John Conway en 1970. Ces automates cellulaires peuvent être considérés comme un tableau de cellules qui sont connectées les unes aux autres par la notion de voisinage.
+Le [Jeu de la Vie](https://fr.wikipedia.org/wiki/Jeu_de_la_vie) est un des premiers exemples d'automates cellulaires (voir figure ci-dessous) construit par John Conway en 1970. Ces automates cellulaires peuvent être considérés comme un tableau de cellules qui sont connectées les unes aux autres par la notion de voisinage.
 
 Ce "jeu" est un fait un jeu à zéro joueur, car son évolution est déterminé uniquement par son état inital et ne nécessite pas d'entrées de joueurs humains. La seule façon d'interagir avec un Jeu de la Vie est de créer une configuration initiale et d'observer comment elle évolue au cours du temps.
 
@@ -20,7 +20,7 @@ L'univers (ou l'état) du Jeu de la Live est une grille à deux dimensions de ta
 
 1. Une cellule vivante avec moins de deux voisines vivantes, meurt d'isolement,
 2. Une cellule vivante avec plus de 3 cellules voisines vivantes, meurt d'étouffement,
-3. Une cellule vivante avec 2 ou 3 cellules voisines vivantes, reste inchangé à la prochaine génération,
+3. Une cellule vivante avec 2 ou 3 cellules voisines vivantes, reste inchangée à la prochaine génération,
 4. Une cellule morte avec exactement 3 cellules vivantes, devient une cellule vivante.L'état de départ est constitué par une forme initiale. La première génération est créér en appliquant les règles ci-dessus simultanément à toutes les cellules de l'état de départ: naissances et morts sont effectués simultanément, and le moment où cela se déroule est appellé tick (de simulation). Les règles continuent d'être appliquées pour créer les futures générations.
 
 Pour commencer, nous allons utiliser un état de départ très simple, appellé "planeur" (glider) qui est connu pour se déplacer diagonalement au bout de 4 itérations comme indiqué ci-dessous : 
@@ -73,7 +73,7 @@ On peut facilement vérifier la taille d'un tableau, ici par exemple 6x6 :
 Il est également possible d'accéder à une sous-partie d'un tableau, en utilsant la notation dite slice :
 
 ```python
->>> print Z[1:5,1:5]
+>>> print cells[1:5,1:5]
 [[0 0 1 0]
  [1 0 1 0]
  [0 1 1 0]
@@ -103,8 +103,8 @@ Dans l'exemple ci-dessous, nous avons extrait une sous-partie de ``cells`` de la
 Nous avons modifié la valeur de ``a[0,0]`` à 9 et nous voyons un changement immédiat dans ``cells[1,1]`` parce que ``a[0,0]`` correspond à ``cells[1,1]``. Ceci peut paraître trivial avec des tableaux si simples, mais les choses peuvent devenir plus complexe comme nous le verrons plus tard. En cas de doute, il possible de vérifier rapidement, si un tableau est une partie d'un autre :
 
 ```python
->>> print(cells.base is None)
-True
+>>> print(cells.base)
+None
 >>> print(a.base is cells)
 True
 ```
