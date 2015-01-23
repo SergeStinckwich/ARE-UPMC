@@ -1,13 +1,18 @@
-#Faire une simulation en Python
+#Simuler en Python
 
 _Ce document est librement inspiré [tutoriel NumPy de Nicolas Rougier](http://www.labri.fr/perso/nrougier/teaching/numpy/numpy.html) et est disponible sous licence Creative Commons Attribution 3.0 United States License (CC-by) http://creativecommons.org/licenses/by/3.0/us_
 
 
-Le principe de toute ``simulation informatique`` d'un phénonème physique ou écologique consiste à représenter l'état initial de la simulation, puis ensuite de construire une fonction qui à partir d'un état précédent va déterminer l'état suivant de la simulation. L'application de cette fonction permet de passer du temps t0 au temps t1, puis t2, etc ... Généralement, on arrrête la simulation au bout d'un certain nombre d'application de la fonction (n) détermniné à l'avance.
+La simulation numérique (ou informatique) permet de représenter dans une machine (ordinateur) un phénomène écologique ou physique que l'on veut étudier à moindre coût et sans danger. On distingue généralement deux types de simulation: ``simulation continue`` et ``simulation discrète``. 
 
-Chaque étape peut correspondre en fonction du phénomène considérée à une durée de 1 ms, 1s, 1 jour ou bien 1000 ans.
+Le principe d'une ``simulation discrète`` d'un phénonème physique ou écologique consiste à représenter l'état initial de la simulation, puis ensuite de construire une fonction qui à partir d'un état précédent va déterminer l'état suivant de la simulation. 
+L'application de cette fonction permet de passer du temps t0 au temps t1, puis t2, etc ... Généralement, on arrrête la simulation au bout d'un certain nombre d'application de la fonction (n) déterminé à l'avance. 
 
-Nous allons illustrer ici ce principe au moyen d'une simulation sous la forme d'un jeu (appellé Jeu de la Vie) représentant des cellules qui naissent ou qui meurent au cours du temps.
+Au contraire une ``simulation continue`` permet de représenter de manière continue les changements d'un système physique ou biologique. Généralement on emploie pour cela, des [équations différentielles](http://fr.wikipedia.org/wiki/%C3%89quation_diff%C3%A9rentielle).
+
+On ne va s'intéresser ici qu'à des simulations discrètes. Dans une simulation discrète, le temps est discrétisé en durée similaire. Chaque étape peut correspondre en fonction du phénomène considérée à une durée de 1 ms, 1s, 1 jour ou bien 1000 ans.
+
+Nous allons illustrer ici ce principe au moyen d'une simulation sous la forme d'une simulation écologique appellée Jeu de la Vie représentant l'évolution de cellules qui naissent ou qui meurent au cours du temps.
 ##Phénomène à simuler: le Jeu de la Vie
 Le [Jeu de la Vie](https://fr.wikipedia.org/wiki/Jeu_de_la_vie) est un des premiers exemples d'automates cellulaires (voir figure ci-dessous) construit par John Conway en 1970. Ces automates cellulaires peuvent être considérés comme un tableau de cellules qui sont connectées les unes aux autres par la notion de voisinage.
 
@@ -124,14 +129,14 @@ Avec NumPy, il est possible de manipuler ``cells`` comme un scalaire normal sans
  [4 4 4 4 4 4]]
 ```
 
-If you look carefully at the output, you may realize that the ouptut corresponds to the formula above applied individually to each element. Said differently, we have ``(1+(2*z+3))[i,j] == (1+(2*z[i,j]+3))`` for any i,j.
+Si vous regardez attentivement la sortie, vous réaliserez qu'elle correspond à l'application de la forme sur chacun des éléments du tableau pris séparemment.
 
-Ok, so far, so good. Now what happens if we add z with one of its subpart, let's say z[-1:1,-1:1] ?
+Que se passe-t-il si on ajoute ``cells`` avec une sous-partie d'elle-même comme par exemple : ``cells[-1:1,-1:1]`` ?
 
 ```python
->>> z + z[-1:1,-1:1]
+>>> cells + cells[1:5,1:5]
 Traceback (most recent call last):
-File "<stdin>", line 1, in <module>
+  File "<stdin>", line 1, in <module>
 
 ValueError: operands could not be broadcast together with shapes (6,6) (4,4)
 ```
