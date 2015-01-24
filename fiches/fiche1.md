@@ -249,4 +249,4 @@ et affichons les résultats :
 
 Nous utilisons pour l'affichage la bibliothèque Matplotlib que nous aborderons plus en détail dans une prochaine séance.
 
-Pour vous entrainez à l'utilisation de NumPy, vous pouvez essayer les exercices disponibles ici : 
+Pour vous entrainez à l'utilisation de NumPy, vous pouvez essayer les exercices disponibles ici : https://github.com/rougier/numpy-100
