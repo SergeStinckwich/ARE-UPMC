@@ -1,21 +1,19 @@
 import numpy as np
 import random
-from matplotlib import pyplot
-from matplotlib import colors
-import matplotlib.animation as animation
-import matplotlib.pyplot as plt
+import matplotlib
+import matplotlib.pyplot as pyplot
 
-def generate_forest(n,m,density):
-    nbArbre = int(n*m*density)
+def generate_forest(n, m, density):
+    number_of_trees = int(n*m*density)
     forest_list = []
-    forest = np.zeros([n,m])
-    if nbArbre != 0 :
+    forest = np.zeros([n, m])
+    if number_of_trees != 0 :
         for i in range(forest.shape[0]):
             for j in range(forest.shape[1]):
-                forest_list.append([i,j])
-        arbre_feu = random.randint(0,nbArbre-1)
-        for i in range(nbArbre):
-            tirageListe = random.randint(0,len(forest_list) -1)
+                forest_list.append([i, j])
+        arbre_feu = random.randint(0, number_of_trees-1)
+        for i in range(number_of_trees):
+            tirageListe = random.randint(0, len(forest_list)-1)
             position =  forest_list[tirageListe]
             forest_list.remove(position)
             if i == arbre_feu:
@@ -37,8 +35,8 @@ def iterate(cells):
                 cellsNew[i,j] = 3
     return cellsNew
 
-def simulation(n,m,d):
-    forest = generate_forest(n,m,d)
+def simulation(n, m, d):
+    forest = generate_forest(n, m, d)
     while 2 in forest:
         forest = iterate(forest)
     return forest
@@ -66,27 +64,11 @@ def n_simulation(number_simulations, n, m, d):
         results[i]= burn_trees_ratio(forest)
     return results
 
-x = np.linspace(0, 1, 100)
+x = np.linspace(0, 1, 10)
 y = [np.mean(n_simulation(10, 30, 30, d)) for d in x]
-plt.plot(x,y)
-plt.show()
+pyplot.plot(x,y)
+pyplot.suptitle('Pourcentage arbres brulés en fonction de la densité')
+pyplot.xlabel('Densité')
+pyplot.ylabel('Pourcentage des arbres brulés')
+pyplot.show()
 
-"""cmap = colors.ListedColormap(['black','green','orange','gray'])
-
-size = np.array(foret.shape)
-dpi = 72
-figsize= size[1]/float(dpi),size[0]/float(dpi)
-fig = plt.figure(figsize = (100,100), dpi = dpi, facecolor = "white")
-fig.add_axes([0.0, 0.0, 1.0, 1.0], frameon = False)
-im=plt.imshow(foret, interpolation = 'nearest', cmap=cmap,vmin=0,vmax=3)
-plt.xticks([]), plt.yticks([])
-
-def update(*args):
-   global foret
-   foret = iterate(foret)
-   im.set_array(foret)
-   return im,
-
-ani = animation.FuncAnimation(fig, update, frames=range(20), interval=500)
-plt.show()
-"""
