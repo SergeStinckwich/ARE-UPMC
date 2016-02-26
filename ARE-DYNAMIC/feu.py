@@ -3,6 +3,7 @@ import random
 import matplotlib
 import matplotlib.pyplot as pyplot
 
+
 def generate_forest(n, m, density):
     number_of_trees = int(n*m*density)
     forest_list = []
