@@ -64,7 +64,6 @@ def n_simulation(number_simulations, n, m, d):
         results[i]= burn_trees_ratio(forest)
     return results
 
-number_of_simulations
 x = np.linspace(0, 1, 10)
 y = [np.mean(n_simulation(10, 30, 30, d)) for d in x]
 pyplot.plot(x,y)
