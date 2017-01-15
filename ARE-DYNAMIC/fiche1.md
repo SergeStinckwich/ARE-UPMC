@@ -1,6 +1,6 @@
 #Simuler en Python
 
-_Ce document est librement inspiré [tutoriel NumPy de Nicolas Rougier](http://www.labri.fr/perso/nrougier/teaching/numpy/numpy.html) et est disponible avec son autorisation sous licence Creative Commons Attribution 3.0 United States License (CC-by) http://creativecommons.org/licenses/by/3.0/us_
+_Ce document est librement inspiré du [tutoriel NumPy de Nicolas Rougier](http://www.labri.fr/perso/nrougier/teaching/numpy/numpy.html) et est disponible avec son autorisation sous licence Creative Commons Attribution 3.0 United States License (CC-by) http://creativecommons.org/licenses/by/3.0/us_
 
 La simulation numérique (ou informatique) permet de représenter dans une machine (ordinateur) un phénomène écologique ou physique que l'on veut étudier à moindre coût et sans danger. On distingue généralement deux types de simulation: ``simulation continue`` et ``simulation discrète``.
 
@@ -11,9 +11,20 @@ Au contraire une ``simulation continue`` permet de représenter de manière cont
 
 On ne va s'intéresser ici qu'à des simulations discrètes. Dans une simulation discrète, le temps est discrétisé en durée similaire. Chaque étape peut correspondre en fonction du phénomène considérée à une durée de 1 ms, 1s, 1 jour ou bien 1000 ans.
 
-Nous allons illustrer ici ce principe au moyen d'une simulation sous la forme d'une simulation écologique appellée Jeu de la Vie représentant l'évolution de cellules qui naissent ou qui meurent au cours du temps.
+##Systèmes dynamiques
+On va s'intéresser à la simulation de *système dynamiques*. Un système dynamique est un système dont l'état dépend uniquement par un ensemble de variables et dont le comportement est décrit par un ensemble de régles prédéfnis.
+
+Exemple de systèmes dynamiques: croissance d'une population, mouvement d'un pendule, déplacement des corps célestes, etc ...
+
+On distingue deux types de systèmes dynamiques:
+* Systèmes dynamiques discrets, généralement décrit par une équation de récurrence: 
+x(t) = F(x(t-1), t)
+
+* Systèmes dynamiques continus, généralement décrit par une ou plusieurs équations différentielles: dx/dt = F(x,t)
 
 ##Phénomène à simuler: le Jeu de la Vie
+
+Prenons maintenant un exemple plus complexe de simulation, celui d'un phénonème écologique représentant l'évolution de cellules qui naissent ou qui meurent au cours du temps: le jeu de la Vie.
 
 Le [Jeu de la Vie](https://fr.wikipedia.org/wiki/Jeu_de_la_vie) est un des premiers exemples d'automates cellulaires (voir figure ci-dessous) construit par John Conway en 1970. Ces automates cellulaires peuvent être considérés comme un tableau de cellules qui sont connectées les unes aux autres par la notion de voisinage.
 
