@@ -12,7 +12,7 @@ Au contraire une ``simulation continue`` permet de représenter de manière cont
 On ne va s'intéresser ici qu'à des simulations discrètes. Dans une simulation discrète, le temps est discrétisé en durée similaire. Chaque étape peut correspondre en fonction du phénomène considérée à une durée de 1 ms, 1s, 1 jour ou bien 1000 ans.
 
 ##Systèmes dynamiques
-On va s'intéresser à la simulation de *système dynamiques*. Un système dynamique est un système dont l'état dépend uniquement par un ensemble de variables et dont le comportement est décrit par un ensemble de régles prédéfnis.
+On va s'intéresser à la simulation de **système dynamiques**. Un système dynamique est un système dont l'état dépend uniquement par un ensemble de variables et dont le comportement est décrit par un ensemble de régles prédéfnis.
 
 Exemple de systèmes dynamiques: croissance d'une population, mouvement d'un pendule, déplacement des corps célestes, etc ...
 
@@ -22,7 +22,53 @@ x(t) = F(x(t-1), t)
 
 * Systèmes dynamiques continus, généralement décrit par une ou plusieurs équations différentielles: dx/dt = F(x,t)
 
-##Phénomène à simuler: le Jeu de la Vie
+Les systèmes dynamiques sont les plus simples à comprendre, représenter et simuler par un ordinateur. Ce ceux les systèmes qui nous intéresserons le plus ici.
+
+Commencons par simuler en Python un système dynamique constituée d'une seule variable.
+On va prendre l'équation de récurrence/ 
+x(t) = a x(t)
+
+a est un paramètre qui représente le ratio entre l'état courant du système et l'état suivant. la simulation informatique va nous permettre de comprendre la dynamique d'un tel système.
+
+Afin de construire une simulation informatique, on a besoin de définir en général au moins 3 fonctions : 
+
+- **initialize**: fonction afin de fixer les valeurs initiales de l'ensemble des variables du système dynamique
+- **observe**: fonction où l'on définit quels les états que l'on veut observer du système. On pourra par exemple afficher certaines variables ou bien faire un graphe
+- **update**: fonction de mise à jour des valeurs des variables en fonction de l'état courant.
+
+Voici un code Python pour l'initialisation:
+
+```python
+def initialize():
+   global x
+   x = 1.
+```
+
+La valeur initiale de x est fixé à 1. On remarquera que l'on utilise une variable globable pour x ce qui est une mauvaise pratique de programmation, mais qui nous simplifie l'écriture du programme ici.
+
+Définissons maintenant le code Python pour l'observation: on va conserver dans une liste _result_, les valeurs successives de _x_ au fur et à mesure de la simulation. Il faut également initialiser cette variable _result_ dans la fonction _initialize_:
+
+```python
+def initialize():
+   global x, result
+   x = 1.
+   result = [x]
+   
+def observe():
+   global x, result
+   result.append(x)
+```
+
+Enfin, il faut définir la fonction update qui va mettre à jour la valeur de _x_:
+
+
+```python
+def update():
+   global x, result
+   x = x * a
+```
+
+##Le Jeu de la Vie
 
 Prenons maintenant un exemple plus complexe de simulation, celui d'un phénonème écologique représentant l'évolution de cellules qui naissent ou qui meurent au cours du temps: le jeu de la Vie.
 
