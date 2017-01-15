@@ -121,6 +121,14 @@ show()
 
 On reviendra sur la librairie matplotlib qui est très utile pour visualiser le comportement d'un système dynamique de manière graphique, un peu plus tard.
 
+Faites maintenant varier la valeur de _a_ pour voir quel type de comportement dans un système dynamique de ce type.
+
+Faites maintenant une simulation pour le système de récurrence : 
+x(t) = a x(t-1) + b, x(0) = 1
+
+Un tel système peut représenter par exemple la croissance d'une population de poisson qui croit avec un ration _a_ mais qui est péché de _b_ poissons par unité de temps.
+Etudier la dynamique de ce système.
+
 ##Le Jeu de la Vie
 
 Prenons maintenant un exemple plus complexe de simulation, celui d'un phénonème écologique représentant l'évolution de cellules qui naissent ou qui meurent au cours du temps: le jeu de la Vie.
