@@ -18,15 +18,15 @@ Exemple de systèmes dynamiques: croissance d'une population, mouvement d'un pen
 
 On distingue deux types de systèmes dynamiques:
 * Systèmes dynamiques discrets, généralement décrit par une équation de récurrence: 
-x(t) = F(x(t-1), t)
+_x(t) = F(x(t-1), t)_
 
-* Systèmes dynamiques continus, généralement décrit par une ou plusieurs équations différentielles: dx/dt = F(x,t)
+* Systèmes dynamiques continus, généralement décrit par une ou plusieurs équations différentielles: _dx/dt = F(x,t)_
 
 Les systèmes dynamiques sont les plus simples à comprendre, représenter et simuler par un ordinateur. Ce ceux les systèmes qui nous intéresserons le plus ici.
 
 Commencons par simuler en Python un système dynamique constituée d'une seule variable.
 On va prendre l'équation de récurrence/ 
-x(t) = a x(t)
+_x(t) = a x(t)_
 
 a est un paramètre qui représente le ratio entre l'état courant du système et l'état suivant. la simulation informatique va nous permettre de comprendre la dynamique d'un tel système.
 
@@ -44,7 +44,7 @@ def initialize():
    x = 1.
 ```
 
-La valeur initiale de x est fixé à 1. On remarquera que l'on utilise une variable globable pour x ce qui est une mauvaise pratique de programmation, mais qui nous simplifie l'écriture du programme ici.
+La valeur initiale de x est fixé à 1. On remarquera que l'on utilise une variable globable pour _x_ ce qui est une mauvaise pratique de programmation, mais qui nous simplifie l'écriture du programme ici.
 
 Définissons maintenant le code Python pour l'observation: on va conserver dans une liste _result_, les valeurs successives de _x_ au fur et à mesure de la simulation. Il faut également initialiser cette variable _result_ dans la fonction _initialize_:
 
@@ -68,8 +68,7 @@ def update():
    x = a * x
 ```
 
-
-Le programme complet est le suivant:
+Le programme complet est le suivant :
 
 ```python
 a = 1.1
@@ -95,7 +94,7 @@ for t in range(30):
 
 Afficher le contenu de la variable _result_. Qu'est ce l'on observe ?
 
-Une meilleure façon de comprendre la dynamique de ce système est de plotter les résultats. Pour cela on utilise la librairie matplotlib de Python: 
+Une meilleure façon de comprendre la dynamique de ce système est de plotter les résultats. Pour cela on utilise la librairie matplotlib de Python : 
 
 ```python
 from pylab import *
@@ -123,11 +122,15 @@ On reviendra sur la librairie matplotlib qui est très utile pour visualiser le 
 
 Faites maintenant varier la valeur de _a_ pour voir quel type de comportement dans un système dynamique de ce type.
 
-Faites maintenant une simulation pour le système de récurrence : 
-x(t) = a x(t-1) + b, x(0) = 1
+Faites maintenant une simulation pour le système de récurrence suivant : 
+_x(t) = a x(t-1) + b, x(0) = 1_
 
-Un tel système peut représenter par exemple la croissance d'une population de poisson qui croit avec un ration _a_ mais qui est péché de _b_ poissons par unité de temps.
+Un tel système peut représenter par exemple la croissance d'une population de poisson qui croit avec un ration _a_ mais où l'on pêche _b_ poissons par unité de temps.
 Etudier la dynamique de ce système.
+
+##Système proies-prédateurs
+
+Construisons maintenant un système dynamique plus complexe en ayant plusieurs variables. On va considérer comme exemple un système écologique avec interactions entre deux espèces.
 
 ##Le Jeu de la Vie
 
