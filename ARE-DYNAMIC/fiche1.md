@@ -139,15 +139,7 @@ Faire une simulation d'un tel système pour vérifier que l'on obtient bien une 
 
 Un tel système dynamique est appellé modèle de [croissance logistique](https://fr.wikipedia.org/wiki/Fonction_logistique_(Verhulst)).
 
-##Système proies-prédateurs
-
-Construisons maintenant un système dynamique plus complexe en ayant plusieurs variables. On va considérer comme exemple un système écologique avec interactions entre deux espèces : un système de type proies-prédateurs. Désignons par deux variables différentes _x_ et _y_ la population des deux espèces.
-
-Que se passerait-il s'y n'avait pas d'influence entre les deux variables :
-* le nombre de proies grandirait si n'y avait pas de prédateurs,
-* le nombre de prédateurs diminuerait si n'y a pas de proies.
-
-##Le Jeu de la Vie (partie optionnelle pour l'ARE GRAVITE)
+##Le Jeu de la Vie
 
 Prenons maintenant un exemple plus complexe de simulation, celui d'un phénonème écologique représentant l'évolution de cellules qui naissent ou qui meurent au cours du temps: le jeu de la Vie.
 
