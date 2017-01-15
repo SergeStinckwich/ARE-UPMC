@@ -128,11 +128,26 @@ _x(t) = a x(t-1) + b, x(0) = 1_
 Un tel système peut représenter par exemple la croissance d'une population de poisson qui croit avec un ration _a_ mais où l'on pêche _b_ poissons par unité de temps.
 Etudier la dynamique de ce système.
 
+Les systèmes dynamiques que nous avons construit jusqu'à présent ont une dynamique de croissance exponentielle. Est-il possible de construire un système dynamique dont la dynamique serait non seulement serait exponentielle mais également convergerait vers une population limite ?
+
+Il nous faut donc trouver une fonction f tel que : _x(t) = f(x(t-1))*x(t-1)_ tel que _f(x)_ doit être proche de _a_ lorsque la population est faible et _f(x)_ doit s'approcher de 1 lorsque un obtient un maximum que l'on va note _K_.
+
+La forme mathématique la plus simple pour f qui respecte ces contraintes est : 
+_f(x) = -(a-1)*x/K + a_
+
+Faire une simulation d'un tel système pour vérifier que l'on obtient bien une dynamique qui converge vers _K_.
+
+Un tel système dynamique est appellé modèle de [croissance logistique](https://fr.wikipedia.org/wiki/Fonction_logistique_(Verhulst)).
+
 ##Système proies-prédateurs
 
-Construisons maintenant un système dynamique plus complexe en ayant plusieurs variables. On va considérer comme exemple un système écologique avec interactions entre deux espèces.
+Construisons maintenant un système dynamique plus complexe en ayant plusieurs variables. On va considérer comme exemple un système écologique avec interactions entre deux espèces : un système de type proies-prédateurs. Désignons par deux variables différentes _x_ et _y_ la population des deux espèces.
 
-##Le Jeu de la Vie
+Que se passerait-il s'y n'avait pas d'influence entre les deux variables :
+* le nombre de proies grandirait si n'y avait pas de prédateurs,
+* le nombre de prédateurs diminuerait si n'y a pas de proies.
+
+##Le Jeu de la Vie (partie optionnelle pour l'ARE GRAVITE)
 
 Prenons maintenant un exemple plus complexe de simulation, celui d'un phénonème écologique représentant l'évolution de cellules qui naissent ou qui meurent au cours du temps: le jeu de la Vie.
 
