@@ -98,9 +98,28 @@ Afficher le contenu de la variable _result_. Qu'est ce l'on observe ?
 Une meilleure façon de comprendre la dynamique de ce système est de plotter les résultats. Pour cela on utilise la librairie matplotlib de Python: 
 
 ```python
+from pylab import *
+a = 1.1
+def initialize():
+   global x, result
+x = 1.
+result = [x]
+def observe():
+   global x, result
+result.append(x)
+def update():
+   global x, result
+   x=a*x
 
-
+initialize()
+for t in range(30):
+   update()
+   observe()
+plot(result)
+show()
 ```
+
+On reviendra sur la librairie matplotlib qui est très utile pour visualiser le comportement d'un système dynamique de manière graphique, un peu plus tard.
 
 ##Le Jeu de la Vie
 
