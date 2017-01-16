@@ -26,7 +26,7 @@ Les systèmes dynamiques sont les plus simples à comprendre, représenter et si
 
 Commencons par simuler en Python un système dynamique constituée d'une seule variable.
 On va prendre l'équation de récurrence/ 
-_x(t) = a x(t)_
+_x(t) = a x(t-1)_
 
 a est un paramètre qui représente le ratio entre l'état courant du système et l'état suivant. la simulation informatique va nous permettre de comprendre la dynamique d'un tel système.
 
@@ -132,7 +132,7 @@ Les systèmes dynamiques que nous avons construit jusqu'à présent ont une dyna
 
 Il nous faut donc trouver une fonction f tel que : _x(t) = f(x(t-1))*x(t-1)_ tel que _f(x)_ doit être proche de _a_ lorsque la population est faible et _f(x)_ doit s'approcher de 1 lorsque un obtient un maximum que l'on va note _K_.
 
-La forme mathématique la plus simple pour f qui respecte ces contraintes est : 
+La forme mathématique la plus simple pour _f_ qui respecte ces contraintes est : 
 _f(x) = -(a-1)*x/K + a_
 
 Faire une simulation d'un tel système pour vérifier que l'on obtient bien une dynamique qui converge vers _K_.
