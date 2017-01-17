@@ -89,14 +89,13 @@ def move_to(c,p,s):
     my_color = new_s[c]
     if p>c: # moving to the right
         for i in range(c,p):
-            new_s[i]=new_s[i+1]
-            new_s[i+1]=my_color
+            new_s[i] = new_s[i+1]
+            new_s[i+1] = my_color
     else:   # moving to the left
         for i in range(p,c):
-            new_s[i+1]=new_s[i]
-            new_s[p]=my_color
+            new_s[i+1] = new_s[i]
+            new_s[p] = my_color
     return new_s
-    
 
 def move_to_nearest_satisfying(c,s,verbose=False):
     '''
@@ -126,7 +125,7 @@ def move_to_nearest_satisfying(c,s,verbose=False):
                 if verbose and satisfied:
                     print (c, " moved to:",c-move_distance)
     return new_s, satisfied
-    
+
 ###############################################################################
 # GLOBAL DYNAMICS
 ###############################################################################   
@@ -177,7 +176,6 @@ cells = [0,1,0,0,0,1,1,0,1,0,0,1,1,0,0,1,1,1,0,1,1,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1
 
 sample_size = 100
 
-
 # Printing the list and some metrics 
 
 print(str_state(cells))
@@ -185,8 +183,6 @@ print(str_unhappy(cells))
 print("number of 0/1 unsatisfied:", count_unhappy(cells))
 print("average level of satisfaction:", average_homogeneity(cells))
 print("average cluster size:", average_cluster_size(cells))
-
-
 
 # Testing moving agent 1 in the initial Schelling list
 
