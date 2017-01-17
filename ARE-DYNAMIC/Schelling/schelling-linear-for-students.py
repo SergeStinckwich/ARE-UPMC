@@ -46,7 +46,7 @@ def str_unhappy(string):
 # INDIVIDUAL SATISFACTION
 ###############################################################################
 
-def homogeneinity_level(c ,state):
+def homogeneinity_level(c, state):
     '''
     for a given individual c and state
     returns the ratio of individuals of same type in neighbourhood
@@ -76,7 +76,7 @@ def is_happy(c, s, verbose = False):
 
 ###############################################################################
 # MOVING TO OTHER LOCATIONS
-###############################################################################   
+###############################################################################
 # gives priority to the right move in case of ties
 # I didn't find this specification in Schelling's paper
 
@@ -128,12 +128,12 @@ def move_to_nearest_satisfying(c,s,verbose=False):
 
 ###############################################################################
 # GLOBAL DYNAMICS
-###############################################################################   
-# Note: departs a little bit from Schelling's specification here       
-# Interesting problem of non convergence here when no maxIterations condition 
-# the penultimate individual moves to the last position, and so on    
-    
-    
+###############################################################################
+# Note: departs a little bit from Schelling's specification here
+# Interesting problem of non convergence here when no maxIterations condition
+# the penultimate individual moves to the last position, and so on
+
+
 def dynamics(s, verbose = False, stepwise = False):
     '''
     departs a little bit from Schelling's specification here
@@ -144,7 +144,7 @@ def dynamics(s, verbose = False, stepwise = False):
         moved = False
         for i in range(size):
             if not (is_happy(i, s)):
-                s,moved = move_to_nearest_satisfying(i, s)
+                s, moved = move_to_nearest_satisfying(i, s)
         if verbose:
             print(str_state(s))
             print(str_unhappy(s))
@@ -176,7 +176,7 @@ cells = [0,1,0,0,0,1,1,0,1,0,0,1,1,0,0,1,1,1,0,1,1,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1
 
 sample_size = 100
 
-# Printing the list and some metrics 
+# Printing the list and some metrics
 
 print(str_state(cells))
 print(str_unhappy(cells))
@@ -191,5 +191,5 @@ print(str_state(new_cells))
 
 # Testing simulations, for neighbourhood from 1 to 8
 
-rslt = simulations([1,2,3,4,5,6,7,8], 0.5, sample_size)
+rslt = simulations([1, 2, 3, 4, 5, 6, 7, 8], 0.5, sample_size)
 draw_simulations(rslt, sample_size)
