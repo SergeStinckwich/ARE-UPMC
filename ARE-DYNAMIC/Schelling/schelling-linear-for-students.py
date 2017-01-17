@@ -87,12 +87,12 @@ def move_to(c, p, s):
     '''
     new_s = copy.copy(s) # new list for result
     my_color = new_s[c]
-    if p>c: # moving to the right
-        for i in range(c,p):
+    if p > c: # moving to the right
+        for i in range(c, p):
             new_s[i] = new_s[i+1]
             new_s[i+1] = my_color
     else:   # moving to the left
-        for i in range(p,c):
+        for i in range(p, c):
             new_s[i+1] = new_s[i]
             new_s[p] = my_color
     return new_s
@@ -104,26 +104,26 @@ def move_to_nearest_satisfying(c,s,verbose=False):
     note: very inefficient but simple solution
     '''
 
-    move_limit = max(size-c,c)
+    move_limit = max(size-c, c)
     move_distance = 0
-    new_s =[]
+    new_s = []
     satisfied = False
     while move_distance < move_limit and not(satisfied):
         move_distance += 1
         new_s = copy.copy(s) # used to simulate the move
         if c+move_distance < size:
-            new_s = move_to(c,c+move_distance,new_s)
-            if is_happy(c+move_distance,new_s):
+            new_s = move_to(c, c+move_distance, new_s)
+            if is_happy(c+move_distance, new_s):
                 satisfied = True
                 if verbose:
-                    print (c, "moved to:",c+move_distance)
+                    print (c, "moved to:", c+move_distance)
         else: # trying to move left
-            if c-move_distance>=0:
+            if c-move_distance >= 0:
                 new_s = copy.copy(s)
-                new_s = move_to(c,c-move_distance,new_s)
-                satisfied = is_happy(c-move_distance,new_s)
+                new_s = move_to(c, c-move_distance, new_s)
+                satisfied = is_happy(c-move_distance, new_s)
                 if verbose and satisfied:
-                    print (c, " moved to:",c-move_distance)
+                    print (c, " moved to:", c-move_distance)
     return new_s, satisfied
 
 ###############################################################################
@@ -134,17 +134,17 @@ def move_to_nearest_satisfying(c,s,verbose=False):
 # the penultimate individual moves to the last position, and so on    
     
     
-def dynamics(s,verbose=False,stepwise=False):
+def dynamics(s, verbose = False, stepwise = False):
     '''
     departs a little bit from Schelling's specification here
     '''
     moved = True
     iterations = 0
-    while moved and iterations<maxIterations:
+    while moved and iterations < maxIterations:
         moved = False
         for i in range(size):
-            if not (is_happy(i,s)):
-                s,moved = move_to_nearest_satisfying(i,s)
+            if not (is_happy(i, s)):
+                s,moved = move_to_nearest_satisfying(i, s)
         if verbose:
             print(str_state(s))
             print(str_unhappy(s))
@@ -186,12 +186,10 @@ print("average cluster size:", average_cluster_size(cells))
 
 # Testing moving agent 1 in the initial Schelling list
 
-new_cells,_ = move_to_nearest_satisfying(1,cells,True)
+new_cells,_ = move_to_nearest_satisfying(1, cells, True)
 print(str_state(new_cells))
 
 # Testing simulations, for neighbourhood from 1 to 8
 
-rslt = simulations([1,2,3,4,5,6,7,8],0.5,sample_size)
-draw_simulations(rslt,sample_size)
-
-
+rslt = simulations([1,2,3,4,5,6,7,8], 0.5, sample_size)
+draw_simulations(rslt, sample_size)
