@@ -21,57 +21,57 @@ maxIterations = 5   # max number of iteration for convergence
 # PRINTING FUNCTIONS
 ###############################################################################
 
-def str_state(s):
+def str_state(state):
     '''
     return the state as a string
     '''
-    res = ""
-    for i in s:
-        res += str(i)
-    return res
+    result = ""
+    for i in state:
+        result += str(i)
+    return result
 
-def str_unhappy(s):
+def str_unhappy(string):
     '''
     returns the string marking unhappy individuals with a 'X'
     '''
-    res = ""
+    result = ""
     for i in range(size):
-        if is_happy(i,s):
-            res += " "
+        if is_happy(i, string):
+            result += " "
         else:
-            res += "X"
-    return res
+            result += "X"
+    return result
 
 ###############################################################################
 # INDIVIDUAL SATISFACTION
 ###############################################################################
 
-def homogeneinity_level(c,s):
+def homogeneinity_level(c ,state):
     '''
-    for a given individual c and state s
+    for a given individual c and state
     returns the ratio of individuals of same type in neighbourhood
     '''
-    my_color = s[c]
+    my_color = state[c]
     count = 0
     nb_neighb = 0
-    for i in range(1,neighb+1):
-        if c+i<size:
+    for i in range(1, neighb+1):
+        if c+i < size:
             nb_neighb += 1
-            if s[c+i] == my_color:
-                count += 1 
-        if c-i>=0:
+            if state[c+i] == my_color:
+                count += 1
+        if c-i >= 0:
             nb_neighb += 1
-            if s[c-i] == my_color:
+            if state[c-i] == my_color:
                 count += 1
     return float(count / nb_neighb)
 
-def is_happy(c,s,verbose=False):
+def is_happy(c, s, verbose = False):
     '''
     returns whether individual c is satisfied in a given state
     '''
-    s = homogeneinity_level(c,s)
+    s = homogeneinity_level(c, s)
     if verbose:
-        print (s)
+        print(s)
     return s >= threshold
 
 ###############################################################################
@@ -80,7 +80,7 @@ def is_happy(c,s,verbose=False):
 # gives priority to the right move in case of ties
 # I didn't find this specification in Schelling's paper
 
-def move_to(c,p,s):
+def move_to(c, p, s):
     '''
     moves individual c to position p, shifting other individuals
     and returns the resulting list
