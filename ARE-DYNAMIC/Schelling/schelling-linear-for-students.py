@@ -11,16 +11,11 @@ import copy
 
 from matplotlib import pyplot as plt
 
-
-
-
-
 # GLOBAL PARAMETERS FOR EXPERIMENTS
 neighb = 4          # size of neighbourhood
 threshold = 0.5     # threshold of satisfaction
 size = 70           # size of the line
 maxIterations = 5   # max number of iteration for convergence
-
 
 ###############################################################################
 # PRINTING FUNCTIONS
@@ -30,28 +25,27 @@ def str_state(s):
     '''
     return the state as a string
     '''
-    res=""
+    res = ""
     for i in s:
-        res+=str(i)
+        res += str(i)
     return res
-    
+
 def str_unhappy(s):
     '''
     returns the string marking unhappy individuals with a 'X'
     '''
-    res=""
+    res = ""
     for i in range(size):
         if is_happy(i,s):
-            res+= " "
+            res += " "
         else:
-            res+="X"
+            res += "X"
     return res
-    
+
 ###############################################################################
 # INDIVIDUAL SATISFACTION
 ###############################################################################
 
-        
 def homogeneinity_level(c,s):
     '''
     for a given individual c and state s
@@ -63,14 +57,13 @@ def homogeneinity_level(c,s):
     for i in range(1,neighb+1):
         if c+i<size:
             nb_neighb += 1
-            if s[c+i]== my_color:
-                count +=1 
+            if s[c+i] == my_color:
+                count += 1 
         if c-i>=0:
             nb_neighb += 1
-            if s[c-i]== my_color:
+            if s[c-i] == my_color:
                 count += 1
     return float(count / nb_neighb)
-
 
 def is_happy(c,s,verbose=False):
     '''
@@ -80,14 +73,13 @@ def is_happy(c,s,verbose=False):
     if verbose:
         print (s)
     return s >= threshold
-    
 
 ###############################################################################
 # MOVING TO OTHER LOCATIONS
 ###############################################################################   
 # gives priority to the right move in case of ties
-# I didn't find this specification in Schelling's paper    
-    
+# I didn't find this specification in Schelling's paper
+
 def move_to(c,p,s):
     '''
     moves individual c to position p, shifting other individuals
@@ -162,24 +154,17 @@ def dynamics(s,verbose=False,stepwise=False):
             input("Press Enter to continue...")
         iterations += 1
     return s
-    
-   
-  
+
 ###############################################################################  
 # METRICS: A FAIRE
+# count_unhappy(), average_homogeneity(), average_cluster_size()
 ###############################################################################  
 
-    
 
-    
-        
 ###############################################################################    
 #  SIMULATIONS: A FAIRE
 ###############################################################################    
 
-
-    
-    
 
 ###############################################################################    
 # TESTING
@@ -197,7 +182,7 @@ sample_size = 100
 
 print(str_state(cells))
 print(str_unhappy(cells))
-print("number of 0/1 unsatisified:", count_unhappy(cells))
+print("number of 0/1 unsatisfied:", count_unhappy(cells))
 print("average level of satisfaction:", average_homogeneity(cells))
 print("average cluster size:", average_cluster_size(cells))
 
