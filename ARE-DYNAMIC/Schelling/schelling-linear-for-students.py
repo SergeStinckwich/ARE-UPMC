@@ -139,17 +139,18 @@ def dynamics(s, verbose = False, stepwise = False):
     '''
     departs a little bit from Schelling's specification here
     '''
-    moved = True
+    one_has_moved = True
     iterations = 0
-    while moved and iterations < maxIterations:
-        moved = False
+    while one_has_moved and iterations < maxIterations:
+        one_has_moved = False
         for i in range(size):
-            if not (is_happy(i, s)):
+            if not (is_happy(i, s)): # i wants to move
                 s, moved = move_to_nearest_satisfying(i, s)
+                one_has_moved = moved or one_has_moved
         if verbose:
+            print ("Tour ", iterations)
             print(str_state(s))
             print(str_unhappy(s))
-            print(count_unhappy(s))
         if stepwise:
             input("Press Enter to continue...")
         iterations += 1
@@ -187,10 +188,16 @@ print(str_unhappy(cells))
 # Testing moving agent 1 in the initial Schelling list
 
 
-
 new_cells,_ = move_to_nearest_satisfying(1, cells, True)
 print(str_state(new_cells))
 
+
+# Testing the dynamics
+# verbose mode will show all the states
+# stepwise mode will wait the user to press a key
+
+final_state = dynamics(cells,True)
+print(str_state(final_state))
 
 
 # Testing simulations, for neighbourhood from 1 to 8
