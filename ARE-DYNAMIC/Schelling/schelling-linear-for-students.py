@@ -170,8 +170,6 @@ def dynamics(s, verbose = False, stepwise = False):
 # Schelling original list
 
 cells = [0,1,0,0,0,1,1,0,1,0,0,1,1,0,0,1,1,1,0,1,1,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,1,0,1,0,0,1,1,1,0,1,1,0,0,0,0,0,1,1,1,0,0,0,1,0,0,1,1,0,1,0,1,1,0]
-my_cells = [1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1]
-print(str_state(move_to_nearest_satisfying(5, my_cells, verbose=True)))
 # Printing the list and some metrics
 
 
