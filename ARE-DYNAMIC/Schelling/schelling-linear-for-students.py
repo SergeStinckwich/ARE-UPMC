@@ -30,13 +30,13 @@ def str_state(state):
         result += str(i)
     return result
 
-def str_unhappy(string):
+def str_unhappy(state):
     '''
     returns the string marking unhappy individuals with a 'X'
     '''
     result = ""
     for i in range(size):
-        if is_happy(i, string):
+        if is_happy(i, state):
             result += " "
         else:
             result += "X"
@@ -69,10 +69,10 @@ def is_happy(c, s, verbose = False):
     '''
     returns whether individual c is satisfied in a given state
     '''
-    s = homogeneinity_level(c, s)
+    h = homogeneinity_level(c, s)
     if verbose:
         print(s)
-    return s >= threshold
+    return h >= threshold
 
 ###############################################################################
 # MOVING TO OTHER LOCATIONS
@@ -89,11 +89,11 @@ def move_to(c, p, s):
     my_color = new_s[c]
     if p > c: # moving to the right
         for i in range(c, p):
-            new_s[i] = new_s[i+1]
+            new_s[i] = s[i+1]
             new_s[i+1] = my_color
     else:   # moving to the left
         for i in range(p, c):
-            new_s[i+1] = new_s[i]
+            new_s[i+1] = s[i]
             new_s[p] = my_color
     return new_s
 
@@ -101,6 +101,7 @@ def move_to_nearest_satisfying(c,s,verbose=False):
     '''
     will move individual c to nearest satisfying location
     simulate the move and check whether satisfying
+    returns a tuple new state, and boolean satisfied
     note: very inefficient but simple solution
     '''
 
@@ -174,22 +175,27 @@ def dynamics(s, verbose = False, stepwise = False):
 
 cells = [0,1,0,0,0,1,1,0,1,0,0,1,1,0,0,1,1,1,0,1,1,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,1,0,1,0,0,1,1,1,0,1,1,0,0,0,0,0,1,1,1,0,0,0,1,0,0,1,1,0,1,0,1,1,0]
 
-sample_size = 100
 
 # Printing the list and some metrics
 
 print(str_state(cells))
 print(str_unhappy(cells))
-print("number of 0/1 unsatisfied:", count_unhappy(cells))
-print("average level of satisfaction:", average_homogeneity(cells))
-print("average cluster size:", average_cluster_size(cells))
+#print("number of 0/1 unsatisfied:", count_unhappy(cells))
+#print("average level of satisfaction:", average_homogeneity(cells))
+#print("average cluster size:", average_cluster_size(cells))
 
 # Testing moving agent 1 in the initial Schelling list
+
+
 
 new_cells,_ = move_to_nearest_satisfying(1, cells, True)
 print(str_state(new_cells))
 
+
+
 # Testing simulations, for neighbourhood from 1 to 8
 
-rslt = simulations([1, 2, 3, 4, 5, 6, 7, 8], 0.5, sample_size)
-draw_simulations(rslt, sample_size)
+#sample_size = 100
+
+#rslt = simulations([1, 2, 3, 4, 5, 6, 7, 8], 0.5, sample_size)
+#draw_simulations(rslt, sample_size)
