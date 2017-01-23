@@ -90,11 +90,10 @@ def move_to(c, p, s):
     if p > c: # moving to the right
         for i in range(c, p):
             new_s[i] = s[i+1]
-            new_s[i+1] = my_color
     else:   # moving to the left
         for i in range(p, c):
             new_s[i+1] = s[i]
-            new_s[p] = my_color
+    new_s[p] = my_color
     return new_s
 
 def move_to_nearest_satisfying(c,s,verbose=False):
@@ -114,17 +113,13 @@ def move_to_nearest_satisfying(c,s,verbose=False):
         new_s = copy.copy(s) # used to simulate the move
         if c+move_distance < size:
             new_s = move_to(c, c+move_distance, new_s)
-            if is_happy(c+move_distance, new_s):
-                satisfied = True
-                if verbose:
-                    print (c, "moved to:", c+move_distance)
-        else: # trying to move left
-            if c-move_distance >= 0:
-                new_s = copy.copy(s)
-                new_s = move_to(c, c-move_distance, new_s)
-                satisfied = is_happy(c-move_distance, new_s)
-                if verbose and satisfied:
-                    print (c, " moved to:", c-move_distance)
+            satisfied = is_happy(c+move_distance, new_s)
+        if c-move_distance >= 0 and not satisfied: # trying to move left
+            new_s = copy.copy(s)
+            new_s = move_to(c, c-move_distance, new_s)
+            satisfied = is_happy(c-move_distance, new_s)
+        if verbose and satisfied:
+            print (c, " moved to:", c-move_distance)
     return new_s, satisfied
 
 ###############################################################################
@@ -175,9 +170,10 @@ def dynamics(s, verbose = False, stepwise = False):
 # Schelling original list
 
 cells = [0,1,0,0,0,1,1,0,1,0,0,1,1,0,0,1,1,1,0,1,1,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,1,0,1,0,0,1,1,1,0,1,1,0,0,0,0,0,1,1,1,0,0,0,1,0,0,1,1,0,1,0,1,1,0]
-
-
+my_cells = [1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1]
+print(str_state(move_to_nearest_satisfying(5, my_cells, verbose=True)))
 # Printing the list and some metrics
+
 
 print(str_state(cells))
 print(str_unhappy(cells))
