@@ -37,5 +37,6 @@ Automates cellulaires
  * Fourmi de Langton https://en.wikipedia.org/wiki/Langton%27s_ant
  * Boids https://fr.wikipedia.org/wiki/Boids
 * Physique
+ * Gaz https://en.wikipedia.org/wiki/Lattice_gas_automaton
  * Wireworld https://en.wikipedia.org/wiki/Wireworld
  * Pile de sable https://en.wikipedia.org/wiki/Abelian_sandpile_model
