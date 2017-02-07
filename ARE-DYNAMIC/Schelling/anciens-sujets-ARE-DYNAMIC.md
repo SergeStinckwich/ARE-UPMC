@@ -36,6 +36,7 @@ Automates cellulaires
  * Wa-Tor (poissons et requins) https://en.wikipedia.org/wiki/Wa-Tor
  * Fourmi de Langton https://en.wikipedia.org/wiki/Langton%27s_ant
  * Boids https://fr.wikipedia.org/wiki/Boids
+ * Feu de forêt
 * Physique
  * Gaz https://en.wikipedia.org/wiki/Lattice_gas_automaton
  * Wireworld https://en.wikipedia.org/wiki/Wireworld
