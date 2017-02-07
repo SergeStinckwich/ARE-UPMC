@@ -32,9 +32,10 @@ Automates cellulaires
 * Traffic routier
  * Modèle de traffic routier de Biham–Middleton–Levine https://en.wikipedia.org/wiki/Biham%E2%80%93Middleton%E2%80%93Levine_traffic_model
  * Modèle de Nagerl-Schreckenberg https://en.wikipedia.org/wiki/Nagel%E2%80%93Schreckenberg_model
-
 * Biologie
+ * Wa-Tor (poissons et requins) https://en.wikipedia.org/wiki/Wa-Tor
  * Fourmi de Langton https://en.wikipedia.org/wiki/Langton%27s_ant
+ * Boids https://fr.wikipedia.org/wiki/Boids
 * Physique
  * Wireworld https://en.wikipedia.org/wiki/Wireworld
  * Pile de sable https://en.wikipedia.org/wiki/Abelian_sandpile_model
