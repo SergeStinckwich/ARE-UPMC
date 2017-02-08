@@ -17,11 +17,27 @@ Vous pouvez trouver ci-dessous une liste non exhaustives d'anciens sujets abord�
 * Modèle de séggrégation [aredynamic23g7schelling.wordpress.com/](http://aredynamic23g7schelling.wordpress.com/)
 * Simulation de circuits logiques [https://aredynamic23g7logique.wordpress.com/](https://aredynamic23g7logique.wordpress.com/)
 * Avalanches [soupocel.wordpress.com/](http://soupocel.wordpress.com/)
+* Ceintures d'astéroides [http://asterodynamic.wordpress.com/](http://asterodynamic.wordpress.com/)
+* Expansion de buzz sur youtube [http://aredynamic1234.wordpress.com/](http://aredynamic1234.wordpress.com/)
+* Nuées d'oiseaux [http://nueedynamic.wordpress.com/](http://nueedynamic.wordpress.com/)
+* Prolifération des bactéries [http://dynamicbacterie.wordpress.com/](http://dynamicbacterie.wordpress.com/)
+* Simulateur de champ de bataille [http://vvqofajm.wordpress.com/](http://vvqofajm.wordpress.com/)
+* Evolution de la population [http://wordpress.com/leopalazzi2015.wordpress.com](http://wordpress.com/leopalazzi2015.wordpress.com)
+* Essaims d'abeilles [http://essaimare.wordpress.com/](http://essaimare.wordpress.com/)
 
-* Ceintures d'astéroides [asterodynamic.wordpress.com/](http://asterodynamic.wordpress.com/)
-* Expansion de buzz sur youtube [aredynamic1234.wordpress.com/](http://aredynamic1234.wordpress.com/)
-* Nuées d'oiseaux [nueedynamic.wordpress.com/](http://nueedynamic.wordpress.com/)
-* Prolifération des bactéries [http://dynamicbacterie.wordpress.com/](http://nueedynamic.wordpress.com/)
-* Simulateur de champ de bataille [vvqofajm.wordpress.com/](http://nueedynamic.wordpress.com/)
-* Evolution de la population [wordpress.com/leopalazzi2015.wordpress.com](http://wordpress.com/leopalazzi2015.wordpress.com)
-* Essaims d'abeilles [essaimare.wordpress.com/](http://essaimare.wordpress.com/)
+
+Automates cellulaires
+=====================
+
+* Traffic routier
+ * Modèle de traffic routier de Biham–Middleton–Levine https://en.wikipedia.org/wiki/Biham%E2%80%93Middleton%E2%80%93Levine_traffic_model
+ * Modèle de Nagerl-Schreckenberg https://en.wikipedia.org/wiki/Nagel%E2%80%93Schreckenberg_model
+* Biologie
+ * Wa-Tor (poissons et requins) https://en.wikipedia.org/wiki/Wa-Tor
+ * Fourmi de Langton https://en.wikipedia.org/wiki/Langton%27s_ant
+ * Boids https://fr.wikipedia.org/wiki/Boids
+ * Feu de forêt
+* Physique
+ * Gaz https://en.wikipedia.org/wiki/Lattice_gas_automaton
+ * Wireworld https://en.wikipedia.org/wiki/Wireworld
+ * Pile de sable https://en.wikipedia.org/wiki/Abelian_sandpile_model
