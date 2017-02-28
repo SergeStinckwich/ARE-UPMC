@@ -48,7 +48,7 @@ Projets 2016-2017 ARE-DYNAMIC
 Mardi matin 8h30-12h30
 * Groupe 1 : Cosar, Chhay, Ratiarison, Luboz https://drive.google.com/drive/folders/0B1LLIeO3kvChQzhSU3phd002VWs
 * Groupe 2 : Baron, Ma, Ren Zang : https://drive.google.com/drive/folders/0BzQD82sj_Hp2QVVXOFE5SEMwQXM
-* Groupe 3 : http://aregalactica.over-blog.com
+* Groupe 3 : Ounnas, Lhermitte, Grassin, Theret http://aregalactica.over-blog.com
 * Groupe 4 : 
 * Groupe 5 : Grimal, Layachi, Osuna https://laboucledelangton.wordpress.com
 * Groupe 6 : Gabory, Villaume, Collas Debeche https://docs.google.com/spreadsheets/d/1zRM07LsfAGkjl2BlQfk1Rwg3X6cTCPk6y7Dvx_VK_4A/edit#gid=0
