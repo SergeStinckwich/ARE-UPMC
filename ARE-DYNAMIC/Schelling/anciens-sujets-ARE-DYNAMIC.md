@@ -46,7 +46,7 @@ Automates cellulaires
 Projets 2016-2017 ARE-DYNAMIC
 =============================
 Mardi matin 8h30-12h30
-* Groupe 1 :
+* Groupe 1 : Cosar, Chhay, Ratiarison, Lubox https://drive.google.com/drive/folders/0B1LLIeO3kvChQzhSU3phd002VWs
 * Groupe 2 :
 * Groupe 3 :
 * Groupe 4 : 
