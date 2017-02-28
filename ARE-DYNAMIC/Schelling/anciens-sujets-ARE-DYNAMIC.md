@@ -45,7 +45,12 @@ Automates cellulaires
 
 Projets 2016-2017 ARE-DYNAMIC
 =============================
-
-Mardi matin
-* Groupe 2 : Gabory, Villaume, Collas Debeche https://docs.google.com/spreadsheets/d/1zRM07LsfAGkjl2BlQfk1Rwg3X6cTCPk6y7Dvx_VK_4A/edit#gid=0
+Mardi matin 8h30-12h30
+* Groupe 1 :
+* Groupe 2 :
+* Groupe 3 :
+* Groupe 4 : 
+* Groupe 5 :
+* Groupe 6 : Gabory, Villaume, Collas Debeche https://docs.google.com/spreadsheets/d/1zRM07LsfAGkjl2BlQfk1Rwg3X6cTCPk6y7Dvx_VK_4A/edit#gid=0
+* Groupe 7 :
 * Groupe 8 : Derdiche, Ouersighni, Makhezer, Guetrelle https://aredynamicfeudeforet.wordpress.com
