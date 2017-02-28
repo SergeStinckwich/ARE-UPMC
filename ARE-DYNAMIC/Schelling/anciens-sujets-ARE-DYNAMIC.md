@@ -48,4 +48,4 @@ Projets 2016-2017 ARE-DYNAMIC
 
 Mardi matin
 * Groupe 2 : Ma, Zang, Baron: 
-* Makhezer, http://aredynamicfeudeforet.wordpress.com
+* Makhezer, https://aredynamicfeudeforet.wordpress.com
