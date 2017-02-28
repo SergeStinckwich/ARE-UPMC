@@ -52,5 +52,5 @@ Mardi matin 8h30-12h30
 * Groupe 4 : 
 * Groupe 5 : Grimal, Layachi, Osuna https://laboucledelangton.wordpress.com
 * Groupe 6 : Gabory, Villaume, Collas Debeche https://docs.google.com/spreadsheets/d/1zRM07LsfAGkjl2BlQfk1Rwg3X6cTCPk6y7Dvx_VK_4A/edit#gid=0
-* Groupe 7 : Mazars, Mauriot, Bojarski, Guirgues 
+* Groupe 7 : Mazars, Mauriot, Bojarski, Guirgues https://drive.google.com/drive/folders/0B80-rHQ6KU5ARGY2bkhWQi1DeGc
 * Groupe 8 : Derdiche, Ouersighni, Makhezer, Guetrelle https://aredynamicfeudeforet.wordpress.com
