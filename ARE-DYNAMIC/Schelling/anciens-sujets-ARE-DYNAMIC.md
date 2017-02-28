@@ -41,3 +41,11 @@ Automates cellulaires
  * Gaz https://en.wikipedia.org/wiki/Lattice_gas_automaton
  * Wireworld https://en.wikipedia.org/wiki/Wireworld
  * Pile de sable https://en.wikipedia.org/wiki/Abelian_sandpile_model
+
+
+Projets 2016-2017 ARE-DYNAMIC
+=============================
+
+Mardi matin
+* Groupe 2 : Ma, Zang, Baron: 
+* Makhezer, http://wordpress.com/posts/aredynamicforet.wordpress.com
