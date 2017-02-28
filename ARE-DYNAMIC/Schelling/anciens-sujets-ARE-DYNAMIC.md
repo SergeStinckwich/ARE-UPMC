@@ -47,5 +47,5 @@ Projets 2016-2017 ARE-DYNAMIC
 =============================
 
 Mardi matin
-* Groupe 2 : Ma, Zang, Baron: 
+* Groupe 2 : Gabory, Villaume, Collas Debeche https://docs.google.com/spreadsheets/d/1zRM07LsfAGkjl2BlQfk1Rwg3X6cTCPk6y7Dvx_VK_4A/edit#gid=0
 * Groupe 8 : Derdiche, Ouersighni, Makhezer, Guetrelle https://aredynamicfeudeforet.wordpress.com
